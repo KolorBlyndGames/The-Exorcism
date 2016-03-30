@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 199579067c4f446749b85405c15acd8d
+timeCreated: 1458468497
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: rdmobj00.007_rdmobj00.007_material_0.002
+    100004: rdmobj01.005_rdmobj01.005_material_1.002
+    100006: rdmobj02.005_rdmobj02.005_material_2.002
+    100008: rdmobj03.005_rdmobj03.005_material_3.002
+    100010: rdmobj04.005_rdmobj04.005_material_4.002
+    100012: rdmobj05.005_rdmobj05.005_material_5.002
+    100014: rdmobj06.005_rdmobj06.005_material_6.002
+    100016: rdmobj07.005_rdmobj07.005_material_7.002
+    400000: //RootNode
+    400002: rdmobj00.007_rdmobj00.007_material_0.002
+    400004: rdmobj01.005_rdmobj01.005_material_1.002
+    400006: rdmobj02.005_rdmobj02.005_material_2.002
+    400008: rdmobj03.005_rdmobj03.005_material_3.002
+    400010: rdmobj04.005_rdmobj04.005_material_4.002
+    400012: rdmobj05.005_rdmobj05.005_material_5.002
+    400014: rdmobj06.005_rdmobj06.005_material_6.002
+    400016: rdmobj07.005_rdmobj07.005_material_7.002
+    2300000: rdmobj00.007_rdmobj00.007_material_0.002
+    2300002: rdmobj01.005_rdmobj01.005_material_1.002
+    2300004: rdmobj02.005_rdmobj02.005_material_2.002
+    2300006: rdmobj03.005_rdmobj03.005_material_3.002
+    2300008: rdmobj04.005_rdmobj04.005_material_4.002
+    2300010: rdmobj05.005_rdmobj05.005_material_5.002
+    2300012: rdmobj06.005_rdmobj06.005_material_6.002
+    2300014: rdmobj07.005_rdmobj07.005_material_7.002
+    3300000: rdmobj00.007_rdmobj00.007_material_0.002
+    3300002: rdmobj01.005_rdmobj01.005_material_1.002
+    3300004: rdmobj02.005_rdmobj02.005_material_2.002
+    3300006: rdmobj03.005_rdmobj03.005_material_3.002
+    3300008: rdmobj04.005_rdmobj04.005_material_4.002
+    3300010: rdmobj05.005_rdmobj05.005_material_5.002
+    3300012: rdmobj06.005_rdmobj06.005_material_6.002
+    3300014: rdmobj07.005_rdmobj07.005_material_7.002
+    4300000: rdmobj00.007_rdmobj00.007_material_0.002
+    4300002: rdmobj01.005_rdmobj01.005_material_1.002
+    4300004: rdmobj02.005_rdmobj02.005_material_2.002
+    4300006: rdmobj03.005_rdmobj03.005_material_3.002
+    4300008: rdmobj04.005_rdmobj04.005_material_4.002
+    4300010: rdmobj05.005_rdmobj05.005_material_5.002
+    4300012: rdmobj06.005_rdmobj06.005_material_6.002
+    4300014: rdmobj07.005_rdmobj07.005_material_7.002
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
