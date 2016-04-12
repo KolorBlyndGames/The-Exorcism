@@ -29,6 +29,9 @@ public class Teleport : MonoBehaviour {
 	[SerializeField]
 	private GameObject demonModel;
 
+	[SerializeField]
+	private GameObject flyingDemonModel;
+
   private Vector3 startingPosition;      
   public Transform[] spawnPoints;  
   public int score = 0;
@@ -53,14 +56,17 @@ public class Teleport : MonoBehaviour {
 				TeleportRandomly ();
 			}
 			if ((int)Time.timeSinceLevelLoad % (int)(10 / (levelIndex * 0.5f)) == 0) {
-				demonModel.transform.position = new Vector3 (0.1f, 0f, 5f);
-				demonModel.SetActive (true);
-				int counter = 0;
-				demonModel.GetComponent<Animation> ().Play ("attack");
-				player.SendMessage("ApplyDamage", 5.0f, SendMessageOptions.DontRequireReceiver);
+				//demonModel.transform.position = new Vector3 (0.1f, 0f, 5f);
+				//demonModel.SetActive (true);
+				//flyingDemonModel.transform.position = new Vector3 (0.1f, 0f, 5f);
+				flyingDemonModel.SendMessage ("AttackPlayer", SendMessageOptions.DontRequireReceiver);
+				//demonModel.GetComponent<Animation> ().Play ("attack");
+				player.SendMessage ("ApplyDamage", 5.0f, SendMessageOptions.DontRequireReceiver);
+			} 
+
+			if (!flyingDemonModel.GetComponent<Animation> ().isPlaying) {
+				TeleportRandomly ();
 			}
-			if (!demonModel.GetComponent<Animation> ().isPlaying)
-				demonModel.SetActive (false);
 		}
   }
   void Update() {
@@ -119,12 +125,6 @@ public class Teleport : MonoBehaviour {
   public void TeleportRandomly() {
 	int spawnPointIndex = Random.Range (0, spawnPoints.Length);
     transform.localPosition = spawnPoints[spawnPointIndex].position;
-
-	/*
-    Vector3 direction = Random.onUnitSphere;
-    direction.y = Mathf.Clamp(direction.y, 0.5f, 1f);
-    float distance = 2 * Random.value + 1.5f;
-    */
   }
 
   public void DemonHit() {

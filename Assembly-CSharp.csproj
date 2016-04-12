@@ -86,6 +86,7 @@
      <Compile Include="Assets\Scripts\PriestController.cs" />
      <Compile Include="Assets\Scripts\PriestHealthText.cs" />
      <Compile Include="Assets\Scripts\ToggleVR.cs" />
+     <Compile Include="Assets\Scripts\ZombieController.cs" />
      <None Include="Assets\Cardboard\Resources\SkyboxMesh.shader" />
      <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />
      <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
