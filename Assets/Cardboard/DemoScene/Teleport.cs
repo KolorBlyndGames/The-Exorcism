@@ -14,23 +14,24 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class Teleport : MonoBehaviour {
   [SerializeField]
   private GameObject gameWinImage;
 
-	[SerializeField]
-	private GameObject player;
+  [SerializeField]
+  private GameObject player;
 
-	[SerializeField]
-	private GameObject demon;
+  [SerializeField]
+  private GameObject demon;
 
-	[SerializeField]
-	private GameObject demonModel;
+  [SerializeField]
+  private GameObject demonModel;
 
-	[SerializeField]
-	private GameObject flyingDemonModel;
+  [SerializeField]
+  private GameObject flyingDemonModel;
 
   private Vector3 startingPosition;      
   public Transform[] spawnPoints;  
@@ -40,6 +41,9 @@ public class Teleport : MonoBehaviour {
   public float holyWaterStart = 0f; 
   public float coolDownTime = 3f;
   public int numOfTries = 5;
+  public bool attacking = false;
+  private AudioSource growl;
+	private int counter = 1;
 
   void Start() {
 		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
@@ -47,6 +51,7 @@ public class Teleport : MonoBehaviour {
         startingPosition = transform.localPosition;
         SetGazedAt(false);
 		demonModel.SetActive (false);
+		growl = GetComponent<AudioSource> ();
   }
 
 
@@ -56,15 +61,14 @@ public class Teleport : MonoBehaviour {
 				TeleportRandomly ();
 			}
 			if ((int)Time.timeSinceLevelLoad % (int)(10 / (levelIndex * 0.5f)) == 0) {
-				//demonModel.transform.position = new Vector3 (0.1f, 0f, 5f);
-				//demonModel.SetActive (true);
-				//flyingDemonModel.transform.position = new Vector3 (0.1f, 0f, 5f);
-				flyingDemonModel.SendMessage ("AttackPlayer", SendMessageOptions.DontRequireReceiver);
-				//demonModel.GetComponent<Animation> ().Play ("attack");
+				transform.position = new Vector3 (player.transform.position.x, 0, player.transform.position.z - 2.5f );
+				attacking = true;
+				AttackPlayer ();
 				player.SendMessage ("ApplyDamage", 5.0f, SendMessageOptions.DontRequireReceiver);
 			} 
 
-			if (!flyingDemonModel.GetComponent<Animation> ().isPlaying) {
+			if (!GetComponent<Animation> ().isPlaying) {
+				attacking = false;
 				TeleportRandomly ();
 			}
 		}
@@ -74,13 +78,16 @@ public class Teleport : MonoBehaviour {
 			numOfTries -= 1;
 			if (numOfTries == 0) {
 				if (score >= 15) {
-					gameWinImage.SetActive (true);
+					if (Cardboard.SDK.VRModeEnabled)
+						SceneManager.LoadScene (5);
+					else
+						SceneManager.LoadScene (6);
 					demon.SetActive (false);
 					gameObject.SetActive (false);
 				}
-				else if (score != 1 || score != 3 || score != 6 || score != 10 || score != 15) {
+				//else if (score != 1 || score != 3 || score != 6 || score != 10 || score != 15) {
 
-				}
+				//}
 			}
 			if (score == 1) {
 				levelIndex++;
@@ -99,15 +106,39 @@ public class Teleport : MonoBehaviour {
 				numOfTries = 5;
 			} 
 		}
+
 		FixedTimeBeforeTeleport (levelIndex);
+		if ((int)Time.timeSinceLevelLoad % (int)(10 / (levelIndex * 0.5f)) != 0) {
+			if (Vector3.Distance (player.transform.position, transform.position) <= 4.0f && !attacking)
+				TeleportRandomly ();
+		}
+		if (!attacking)
+			Normal ();
+
 
   }
-
+  void Normal () {
+		Vector3 targetPosition = new Vector3 (player.transform.position.x,this.transform.position.y,player.transform.position.z);
+		this.transform.LookAt (targetPosition);
+		Vector3 oldPos = new Vector3 (transform.position.x, 0f, transform.position.z);
+		transform.position = oldPos; 
+		transform.Translate (Vector3.forward * Time.deltaTime);
+		this.GetComponent<Animation> ().CrossFade ("walk");
+  }
   void LateUpdate() {
     Cardboard.SDK.UpdateState();
     if (Cardboard.SDK.BackButtonPressed) {
       Application.Quit();
     }
+  }
+
+  void AttackPlayer () {
+		Vector3 targetPosition = new Vector3 (player.transform.position.x,this.transform.position.y,player.transform.position.z);
+		this.transform.LookAt (targetPosition);
+		Vector3 oldPos = new Vector3 (transform.position.x, 0f, transform.position.z);
+		transform.position = oldPos;
+		this.GetComponent<Animation> ().Stop ("walk");
+		this.GetComponent<Animation> ().CrossFade ("attack");
   }
 
   public void SetGazedAt(bool gazedAt) {
@@ -125,10 +156,17 @@ public class Teleport : MonoBehaviour {
   public void TeleportRandomly() {
 	int spawnPointIndex = Random.Range (0, spawnPoints.Length);
     transform.localPosition = spawnPoints[spawnPointIndex].position;
+	counter++;
+	if (growl.isPlaying) {
+			goto A;
+		} else if (counter % 5 == 0)
+			growl.Play ();
+	A: {}
   }
 
   public void DemonHit() {
 	score += 1;
-	TeleportRandomly ();
+	if (!attacking)
+		TeleportRandomly ();
   }
 }

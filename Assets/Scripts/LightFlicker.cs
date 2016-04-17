@@ -35,13 +35,13 @@ public class LightFlicker : MonoBehaviour {
 	void Update () {
 		float time1 = Time.timeSinceLevelLoad;
 		if (time1 > 4.0f && time1 < 12.0f) {
-			PossessedModel.GetComponent<Animation> ().Play ("walk");
-			PossessedModel.transform.Translate (Vector3.forward * Time.deltaTime * 1.2f);
+			//PossessedModel.GetComponent<Animation> ().Play ("walk");
+			PossessedModel.transform.Translate (Vector3.up * -Time.deltaTime * 1.2f);
 		}
 		if (Time.timeSinceLevelLoad >= 4.0f && Time.timeSinceLevelLoad <= 12.0f) {
 			if (laugh.isPlaying) {
 				goto A;
-			} else if (!laugh.isPlaying && time1 < 12.0f)
+			} else if (!laugh.isPlaying && time1 < 7.0f)
 				laugh.Play ();
 		}
 		A: {}

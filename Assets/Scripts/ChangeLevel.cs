@@ -8,6 +8,9 @@ public class ChangeLevel : MonoBehaviour {
 	private int index;
 	// Update is called once per frame
 	void Update () {
-		AutoFade.LoadLevel(index , 2, 3, Color.black);
+		if (index != 3)
+			AutoFade.LoadLevel (index, 2, 3, Color.black);
+		else
+			SceneManager.LoadScene (3);
 	}
 }
